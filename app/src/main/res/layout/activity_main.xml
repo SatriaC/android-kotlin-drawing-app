@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <com.fromzerotohero.kidsdrawingapp.DrawingView
-        android:id="@+id/drawingView"
+        android:id="@+id/drawing_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="5dp"
