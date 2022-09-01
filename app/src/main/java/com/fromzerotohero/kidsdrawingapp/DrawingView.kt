@@ -17,9 +17,25 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     private var color = Color.BLACK
     private var canvas: Canvas? = null
     private val mPaths = ArrayList<CustomPath>()
+    private val mUndoPaths = ArrayList<CustomPath>()
+    private val mRedoPaths = ArrayList<CustomPath>()
 
     init {
         setUpDrawing()
+    }
+
+    fun onClickUndo() {
+        if (mPaths.size > 0){
+            mUndoPaths.add(mPaths.removeAt(mPaths.size-1))
+            invalidate()
+        }
+    }
+
+    fun onClickRedo() {
+        if (mPaths.size > mRedoPaths.size){
+//            mUndoPaths.add(mPaths.)
+            invalidate()
+        }
     }
 
     private fun setUpDrawing() {
@@ -90,12 +106,12 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     fun setSizeForBrush(newSize: Float) {
         mBrushSize = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
-                newSize, resources.displayMetrics
-            )
+            newSize, resources.displayMetrics
+        )
         mDrawPaint!!.strokeWidth = mBrushSize
     }
 
-    fun setColor(newColor: String){
+    fun setColor(newColor: String) {
         color = Color.parseColor(newColor)
         mDrawPaint!!.color = color
     }
